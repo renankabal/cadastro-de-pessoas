@@ -1,3 +1,11 @@
+<style>
+   .f{
+      color:pink;
+   }
+   .m{
+      color:blue;
+   }
+</style>
 <?php
    
    echo '<body bgcolor="orange">';
@@ -17,7 +25,7 @@
             $aceito = $pessoa["aceito"];
             
         if($pessoa != null){
-            echo "<dt>Nome :" . $pessoa["nome"] . "</dt>";
+            echo "<dt class='$sexo'>Nome :" . $pessoa["nome"] . "</dt>";
             echo '<br>';
             echo "<dd>Sexo : "  . $pessoa["sexo"]  . "</dd>";
             echo '<br>';
