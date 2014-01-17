@@ -6,6 +6,10 @@
 <input type="radio" name="sexo" value="f" />
 <label>Feminino</label>
 <br><br><br>
+<font color="white"><label>Telefone :</label></font>
+<input type="text" name="fone" maxlength="8"/><br><br>
+<font color="white"><label>CPF :</label></font>
+<input type="text" name="cpf" maxlength="11"/><br><br>
 <input type="checkbox" name="aceito" value="true" />
 <label>Aceito Contrato</label>
 <br><br>
