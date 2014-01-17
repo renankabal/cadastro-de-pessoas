@@ -1,14 +1,14 @@
 <style>
    .f{
-      color:pink;
+      color:violet;
    }
    .m{
-      color:blue;
+      color:red;
    }
 </style>
 <?php
    
-   echo '<body bgcolor="orange">';
+   echo '<body bgcolor="lime">';
   
     require_once("menu.php");
     
@@ -25,11 +25,16 @@
             $aceito = $pessoa["aceito"];
             
         if($pessoa != null){
+            echo '<fieldset>';
             echo "<dt class='$sexo'>Nome :" . $pessoa["nome"] . "</dt>";
             echo '<br>';
             echo "<dd>Sexo : "  . $pessoa["sexo"]  . "</dd>";
             echo '<br>';
             echo "<dd>Estado: " . $pessoa["estado"] . "</dd>";
+            echo '<br>';
+            echo "<dd>Fone : " . $pessoa["fone"] . "</dd>";
+            echo '<br>';
+            echo "<dd>CPF : " . $pessoa["cpf"] . "</dd>";
             echo '<br>';
             echo "<dd>Aceita o contrato: ";
             if($aceito){
@@ -47,6 +52,7 @@
 }
 else{
     echo "Não existem pessoas cadastradas";
+    echo '</fieldset>';
 }
     
 ?>
