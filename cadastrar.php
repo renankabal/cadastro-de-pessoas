@@ -7,6 +7,7 @@
     require_once("menu.php");
     echo '<center>';
     session_start();
+    setlocale(LC_ALL, "pt_BR", "ptb");
     
     
     if(!isset($_SESSION["cadastros"])){
@@ -14,7 +15,8 @@
         
 
     }
-    
+    $hoje = $_REQUEST["hoje"];
+    $data = $_REQUEST["data"];
     $nome = $_REQUEST["nome"];
     $fone = $_REQUEST["fone"];
     $cpf = $_REQUEST["cpf"];
@@ -30,7 +32,7 @@
         $camposValidos = false;
     }
     $estado = $_REQUEST["estado"];
-    $comentario = $_REQUEST["comentario"];
+    $observacao = $_REQUEST["observacao"];
 
 
       
@@ -74,9 +76,9 @@
         echo "Tamanho do TELEFONE é invalido!!<br>";
         $camposValidos = false;
     }
-    if(!ctype_digit($fone)){
-        echo "Digite somente numeros em Fone<br>";
-        $camposValidos = false;
+    if (!preg_match("/^\d{4}-\d{4}$/", $fone)){
+        echo "Formato inválido para o campo telefone<br>";
+         $camposValidos = false;
     }
     $cpf = trim($cpf);
     if(empty($cpf)){
@@ -86,6 +88,10 @@
     else if(strlen($cpf) !=14 and strlen($cpf) !=11){
         echo "Tamanho do CPF é invalido!!<br>";
         $camposValidos = false;
+    }
+    if (!preg_match("/^\d{3}\\.\d{3}\\.\d{3}\\-\d{2}$/", $cpf)){
+        echo "Formato inválido para o campo cpf<br>";
+            $camposValidos = false;
     }
     $email = trim($email);
     if(empty($email)){
@@ -107,15 +113,33 @@
         $camposValidos = false;
     }
     
-    $comentario = trim($comentario);
-    if(empty($comentario)){
+    $observacao = trim($observacao);
+    if(empty($observacao)){
         echo "O campo é obrigatório,comente!<br>";
         $camposValidos = false;
     }
-    if(!ctype_alnum($comentario)){
+    if(!ctype_alnum($observacao)){
         echo "Digite somente letras e numeros em comentario<br>";
         $camposValidos = false;
     }
+    $data = trim($data);
+    if(empty($data)){
+        echo "O campo Data de nascimento é obrigatório!<br>";
+        $camposValidos = false;
+    }
+    else if(strlen($data) !==10){
+        echo "Tamanho da DATA DE NASCIMENTO é invalido!!<br>";
+        $camposValidos = false;
+    }
+    $hoje = trim($hoje);
+    if(empty($hoje)){
+        echo "O campo Hoje é obrigatório!<br>";
+        $camposValidos = false;
+    }
+    else if(strlen($hoje) !==10){
+        echo "Tamanho DATA DE HOJE é invalido!!<br>";
+        $camposValidos = false;
+    }    
 
     if($camposValidos){
         $pessoa = array();
@@ -123,11 +147,14 @@
         $pessoa["sexo"] = $sexo;
         $pessoa["aceito"] = $aceito;
         $pessoa["estado"] = $estado;
-        $pessoa["comentario"] = $comentario;
+        $pessoa["observacao"] = $observacao;
         $pessoa["cpf"] = $cpf;
         $pessoa["fone"] = $fone;
         $pessoa["email"] = $email;
         $pessoa["site"] = $site;
+        $pessoa["data"] = $data;
+        $pessoa["hoje"] = $hoje;
+
     
     
     
