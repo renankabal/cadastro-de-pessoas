@@ -19,7 +19,7 @@
         $email = $_REQUEST["email"];
         $site = $_REQUEST["site"];
         $estado = $_REQUEST["estado"];
-        $comentario = $_REQUEST["comentario"];
+        $observacao = $_REQUEST["observacao"];
         $sexo = $_REQUEST["sexo"];
         $data = $_REQUEST["data"];
         $hoje = $_REQUEST["hoje"];
@@ -100,12 +100,12 @@
         $camposValidos = false;
     }
     
-    $comentario = trim($comentario);
-    if(empty($comentario)){
+    $observacao = trim($observacao);
+    if(empty($observacao)){
         echo "O campo é obrigatório,comente!<br>";
         $camposValidos = false;
     }
-    if(!ctype_alnum($comentario)){
+    if(!ctype_alnum($observacao)){
         echo "Digite somente letras e numeros em comentario<br>";
         $camposValidos = false;
     }
@@ -151,7 +151,7 @@
         $pessoa["sexo"] = $sexo;
         $pessoa["aceito"] = $aceito;
         $pessoa["estado"] = $estado;
-        $pessoa["comentario"] = $comentario;
+        $pessoa["observacao"] = $observacao;
         $pessoa["cpf"] = $cpf;
         $pessoa["fone"] = $fone;
         $pessoa["email"] = $email;
