@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <title>Validando datas</title>
+    </head>
+    <body>
+        <form method="post">
+            <input type="text" name="data" value="<?= $_REQUEST['data'] ?>" /> 
+            <input type="submit" value="Validar!" name="validar"/>
+            <br/>
+        </form>
+    </body>
+</html>
+
+<?php            
+    if(isset($_REQUEST["validar"])){
+        $data = $_REQUEST["data"];
+
+        $camposValidos = true;
+        
+        $data = trim($data);
+        if(empty($data)){
+            echo "Por favor preencha a data";
+            $camposValidos = false;       
+        }
+        else if(!preg_match("/^\d{2}\\/\d{2}\\/\d{4}$/", $data)){
+            echo "Formato inválido de data. Utilize o formato dd/mm/aaaa";
+            $camposValidos = false;               
+        }
+        else{
+            $pedacos = explode('/', $data);
+            $dia = $pedacos[0];
+            $mes = $pedacos[1];
+            $ano = $pedacos[2];    
+
+            if(!checkdate($mes, $dia, $ano)){
+                echo "Data inválida";
+                $camposValidos = false;                           
+            }
+            //Quando entra aqui, a data já foi validada corretamente, agora somente comparações
+            else{
+                //no PHP datas brasileiras tem de ser convertidas para o formato YYYYMMDD
+                $dataYmd = $ano.$mes.$dia;
+                $dataAtual = date('Ymd');
+
+                if($dataAtual > $dataYmd){
+                    echo "Já passou";
+                }
+                else if($dataAtual < $dataYmd){
+                    echo "É no futuro" ;
+                }
+                else{
+                    echo "É hoje";            
+                }
+            }
+        }       
+    }
+?>
