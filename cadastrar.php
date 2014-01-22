@@ -15,6 +15,7 @@
         
 
     }
+    $saldo = $_REQUEST["saldo"];
     $hoje = $_REQUEST["hoje"];
     $data = $_REQUEST["data"];
     $nome = $_REQUEST["nome"];
@@ -32,7 +33,7 @@
         $camposValidos = false;
     }
     $estado = $_REQUEST["estado"];
-    $observacao = $_REQUEST["observacao"];
+    $comentario = $_REQUEST["comentario"];
 
 
       
@@ -113,12 +114,12 @@
         $camposValidos = false;
     }
     
-    $observacao = trim($observacao);
-    if(empty($observacao)){
+    $comentario = trim($comentario);
+    if(empty($comentario)){
         echo "O campo é obrigatório,comente!<br>";
         $camposValidos = false;
     }
-    if(!ctype_alnum($observacao)){
+    if(!ctype_alnum($comentario)){
         echo "Digite somente letras e numeros em comentario<br>";
         $camposValidos = false;
     }
@@ -131,6 +132,10 @@
         echo "Tamanho da DATA DE NASCIMENTO é invalido!!<br>";
         $camposValidos = false;
     }
+    if (!preg_match("/^\d{2}\\/\d{2}\\/\d{4}$/", $data)){
+        echo "Formato inválido para o campo data de nascimento<br>";
+        $camposValidos = false;
+    }
     $hoje = trim($hoje);
     if(empty($hoje)){
         echo "O campo Hoje é obrigatório!<br>";
@@ -139,7 +144,20 @@
     else if(strlen($hoje) !==10){
         echo "Tamanho DATA DE HOJE é invalido!!<br>";
         $camposValidos = false;
-    }    
+    }
+    if (!preg_match("/^\d{2}\\/\d{2}\\/\d{4}$/", $hoje)){
+        echo "Formato inválido para o campo data de hoje<br>";
+        $camposValidos = false;
+    }
+    $saldo = trim($saldo);
+    if(empty($saldo)){
+        echo "O campo saldo é obrigatório!<br>";
+        $camposValidos = false;
+    }
+    if (preg_match("/^R\\$\s(\d)+\\,(\d){2}$/", $saldo)){
+        echo "Formato inválido para o campo data de nascimento<br>";
+        $camposValidos = false;
+    }
 
     if($camposValidos){
         $pessoa = array();
@@ -147,13 +165,14 @@
         $pessoa["sexo"] = $sexo;
         $pessoa["aceito"] = $aceito;
         $pessoa["estado"] = $estado;
-        $pessoa["observacao"] = $observacao;
+        $pessoa["comentario"] = $comentario;
         $pessoa["cpf"] = $cpf;
         $pessoa["fone"] = $fone;
         $pessoa["email"] = $email;
         $pessoa["site"] = $site;
         $pessoa["data"] = $data;
         $pessoa["hoje"] = $hoje;
+        $pessoa["saldo"] = $saldo;
 
     
     
