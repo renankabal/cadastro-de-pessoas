@@ -1,6 +1,10 @@
 <center>
 <fieldset><font color="white"><label>Nome :</label></font>
 <input type="text" name="nome" /></fieldset><br><br>
+<fieldset><font color="white"><label>Data de Nascimento :</label></font>
+<input type="text" name="data" /></fieldset><br><br>
+<fieldset><font color="white"><label>Hoje :</label></font>
+<input type="text" name="hoje" /></fieldset><br><br>
 <fieldset><font color="white"><label>Fone :</label></font>
 <input type="text" name="fone" maxlength="9"/></fieldset><br><br>
 <fieldset><font color="white"><label>CPF  :</label></font>
@@ -9,6 +13,8 @@
 <input type="text" name="site" /></fieldset><br><br>
 <fieldset><font color="white"><label>Emaill :</label></font>
 <input type="text" name="email" /></fieldset><br><br>
+<fieldset><font color="white"><label>Saldo :</label></font>
+<input type="text" name="saldo" /></fieldset><br>
 <fieldset><input type="radio" name="sexo" value="masculino" checked="checked" />
 <label>Masculino</label>
 <input type="radio" name="sexo" value="feminino" />
@@ -28,5 +34,4 @@
 
 <fieldset><textarea name="observacao" rows="5" cols="20"></textarea></fieldset>
 <fieldset><label>Observação</label></fieldset>
-
 </center>
