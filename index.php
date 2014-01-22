@@ -6,7 +6,6 @@
     }
     .feminino{
       color: purple;
-      font-size:20px;
     }
  
  
@@ -41,10 +40,13 @@
             
             echo "<dt class='$sexo'>" . $pessoa["nome"] . "</dt><br>";
             echo "<dd>Sexo : "  . $sexo  . "</dd>";
+            echo "<dd>Hoje : " . $pessoa["hoje"] . "</dd><br>";
+            echo "<dd>Nascimento : " . $pessoa["data"] . "</dd><br>";           
             echo "<dd>Estado: " . $pessoa["estado"] . "</dd><br>";
-            echo "<dd>Observação: " . $pessoa["observacao"] . "</dd><br>";
+            echo "<dd>Comentario: " . $pessoa["comentario"] . "</dd><br>";
             echo "<dd>Fone : " . $pessoa["fone"] . "</dd><br>";
             echo "<dd>CPF : " . $pessoa["cpf"] . "</dd><br>";
+            echo "<dd>Saldo R$ : " . $pessoa["saldo"] . "</dd><br>";
             echo "<dd>Site Preferido : " . $pessoa["site"] . "</dd><br>";
             echo "<dd>Emaill : " . $pessoa["email"] . "</dd><br>";
             echo "<dd>Aceita o contrato: ";
@@ -53,6 +55,7 @@
             }
             else{
                 echo "Não";
+                echo '<br>';
             }
             echo "</dd>";
         }
@@ -63,5 +66,7 @@
 else{
     echo "Não existem pessoas cadastradas";
 }
+     
      echo '</center>';
+     require_once("menu.php");
 ?>
