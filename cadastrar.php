@@ -12,11 +12,10 @@
     
     if(!isset($_SESSION["cadastros"])){
         $_SESSION["cadastros"] = array();
-        
-
+    
     }
     $saldo = $_REQUEST["saldo"];
-    $hoje = $_REQUEST["hoje"];
+    $nascimento = $_REQUEST["nascimento"];
     $data = $_REQUEST["data"];
     $nome = $_REQUEST["nome"];
     $fone = $_REQUEST["fone"];
@@ -33,16 +32,12 @@
         $camposValidos = false;
     }
     $estado = $_REQUEST["estado"];
-    $observacao = $_REQUEST["observacao"];
-
-
-      
+    $comentario = $_REQUEST["comentario"];
+    
     $aceito = false;
     if(isset($_REQUEST["aceito"])){
         
-        $aceito = true;
-        
-        
+        $aceito = true;   
     }
     
     $camposValidos = true;
@@ -110,16 +105,16 @@
         $camposValidos = false;
     }
     if(!filter_var($site, FILTER_VALIDATE_URL)){
-        echo "Site inválido<br><br>";
+        echo "Site inválido<br>";
         $camposValidos = false;
     }
     
-    $observacao = trim($observacao);
-    if(empty($observacao)){
+    $comentario = trim($comentario);
+    if(empty($comentario)){
         echo "O campo é obrigatório,comente!<br>";
         $camposValidos = false;
     }
-    if(!ctype_alnum($observacao)){
+    if(!ctype_alnum($comentario)){
         echo "Digite somente letras e numeros em comentario<br>";
         $camposValidos = false;
     }
@@ -136,19 +131,47 @@
         echo "Formato inválido para o campo data de nascimento<br>";
         $camposValidos = false;
     }
-    $hoje = trim($hoje);
-    if(empty($hoje)){
+    else{
+            $pedacos = explode('/', $data);
+            $dia = $pedacos[0];
+            $mes = $pedacos[1];
+            $ano = $pedacos[2];    
+
+            if(!checkdate($mes, $dia, $ano)){
+                echo "Data inválida";
+                $camposValidos = false;                           
+            }
+            //Quando entra aqui, a data já foi validada corretamente, agora somente comparações
+            else{
+                //no PHP datas brasileiras tem de ser convertidas para o formato YYYYMMDD
+                $dataYmd = $ano.$mes.$dia;
+                $dataAtual = date('Ymd');
+
+                if($dataAtual > $dataYmd){
+                    echo "Já passou<br>";
+                }
+                else if($dataAtual < $dataYmd){
+                    echo "É no futuro<br>" ;
+                }
+                else{
+                    echo "É hoje<br>";            
+                }
+            }
+        }
+    $nascimento = trim($nascimento);
+    if(empty($nascimento)){
         echo "O campo Hoje é obrigatório!<br>";
         $camposValidos = false;
     }
-    else if(strlen($hoje) !==10){
+    else if(strlen($nascimento) !==10){
         echo "Tamanho DATA DE HOJE é invalido!!<br>";
         $camposValidos = false;
     }
-    if (!preg_match("/^\d{2}\\/\d{2}\\/\d{4}$/", $hoje)){
+    if (!preg_match("/^\d{2}\\/\d{2}\\/\d{4}$/", $nascimento)){
         echo "Formato inválido para o campo data de hoje<br>";
         $camposValidos = false;
     }
+    
     $saldo = trim($saldo);
     if(empty($saldo)){
         echo "O campo saldo é obrigatório!<br>";
@@ -165,13 +188,13 @@
         $pessoa["sexo"] = $sexo;
         $pessoa["aceito"] = $aceito;
         $pessoa["estado"] = $estado;
-        $pessoa["observacao"] = $observacao;
+        $pessoa["comentario"] = $comentario;
         $pessoa["cpf"] = $cpf;
         $pessoa["fone"] = $fone;
         $pessoa["email"] = $email;
         $pessoa["site"] = $site;
         $pessoa["data"] = $data;
-        $pessoa["hoje"] = $hoje;
+        $pessoa["nascimento"] = $nascimento;
         $pessoa["saldo"] = $saldo;
 
     
