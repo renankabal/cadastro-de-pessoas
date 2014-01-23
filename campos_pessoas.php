@@ -1,10 +1,10 @@
 <center>
 <fieldset><font color="white"><label>Nome :</label></font>
 <input type="text" name="nome" /></fieldset><br><br>
-<fieldset><font color="white"><label>Data de Nascimento :</label></font>
+<fieldset><font color="white"><label>Data Atual :</label></font>
 <input type="text" name="data" /></fieldset><br><br>
-<fieldset><font color="white"><label>Hoje :</label></font>
-<input type="text" name="hoje" /></fieldset><br><br>
+<fieldset><font color="white"><label>Nascimento:</label></font>
+<input type="text" name="nascimento" /></fieldset><br><br>
 <fieldset><font color="white"><label>Fone :</label></font>
 <input type="text" name="fone" maxlength="9"/></fieldset><br><br>
 <fieldset><font color="white"><label>CPF  :</label></font>
