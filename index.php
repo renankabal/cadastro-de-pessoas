@@ -7,16 +7,7 @@
     .feminino{
       color: purple;
     }
- 
- 
- 
- 
- 
 </style>
-
-
-
-
 <?php
    
    echo '<body bgcolor="orange">';
@@ -40,8 +31,8 @@
             
             echo "<dt class='$sexo'>" . $pessoa["nome"] . "</dt><br>";
             echo "<dd>Sexo : "  . $sexo  . "</dd>";
-            echo "<dd>Hoje : " . $pessoa["hoje"] . "</dd><br>";
-            echo "<dd>Nascimento : " . $pessoa["data"] . "</dd><br>";           
+            echo "<dd>Nascimento : " . $pessoa["nascimento"] . "</dd><br>";
+            echo "<dd>Data Atual : " . $pessoa["data"] . "</dd><br>";           
             echo "<dd>Estado: " . $pessoa["estado"] . "</dd><br>";
             echo "<dd>Comentario: " . $pessoa["comentario"] . "</dd><br>";
             echo "<dd>Fone : " . $pessoa["fone"] . "</dd><br>";
